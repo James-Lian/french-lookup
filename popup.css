@@ -8,6 +8,10 @@ body {
     background-color: oklch(96.7% 0.003 264.542);
 }
 
+button {
+    cursor: pointer;
+}
+
 #title {
     background-color: oklch(50% 0.134 242.749);
     margin-bottom: 12px;
@@ -33,29 +37,94 @@ body {
     font-size: medium;
 }
 
-#searchbutton {
+.topbuttons {
     color: white;
     border: white;
     border-radius: 3px;
     background-color: transparent;
     font-size: medium;
+    font-style: italic;
 }
 
 #results {
     flex: 3;
 }
 
+#source {
+    display: inline-block;
+    background-color: oklch(92% 0.004 286.32);
+    padding: 3px;
+    margin: 8px 0px;
+    border: solid darkgray 1px;
+    border-radius: 3px;
+    font-size: medium;
+}
+
+#word {
+    margin-left: 3px;
+    padding: 10px 0px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.collapsible {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-top: solid darkgray 1px;
+    padding: 6px;
+    font-size: medium;
+    transition: flex-grow 0.3s;
+}
+
+.dropdown {
+    flex: 1;
+}
+
 .important-info {
     display: flex;
     flex-direction: row;
+    width: 100%
+}
+
+.wordinfo {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    flex: 2;
+    justify-content: left;
+    padding-left: 8px;
+}
+
+.wordclass {
+    font-style: italic;
+}
+
+.translation {
+    display: flex;
+    flex-direction: column;
+    flex: 4;
+    text-align: left;
+}
+
+.synonym {
+    font-style: italic;
 }
 
 #conjugation {
-    flex: 2;
+    position: absolute;
+    height: 28px;
+    bottom: 0;
+    left:0;
+    right:0;
     background-color: oklch(92% 0.004 286.32);
     display: flex;
     flex-direction: column;
     padding: 3px;
+    border-bottom: solid darkgray;
+    transition: height 0.3s ease-out;
 }
 
 #verb {
@@ -63,9 +132,15 @@ body {
     font-size: large;
     font-weight: bold;
     font-style: italic;
+    cursor: pointer;
+}
+
+#hint {
+    transition: visibility 0.3s, opacity 0.3s linear;
 }
 
 #footer {
+    padding: 8px 0px;
     display: flex;
     flex-direction: row;
     text-align: center;

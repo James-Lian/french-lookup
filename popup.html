@@ -8,37 +8,48 @@
     <div id="everything" style="height:480px; display: flex; flex-direction: column;">
         <div id="title">
             <div id="searchbox">
-                <input type="text" id="searchbar" placeholder="Search words here... / Trouver des mots ici..."/>
-                <button id="searchbutton">Enter</button>
+                <input type="text" id="searchbar" pattern="[^\/\\]*" placeholder="Search for words... / Trouver des mots..."/>
+                <button id="searchbutton" class="topbuttons">defin</button>
+                <button id="switch" class="topbuttons" style="font-style: normal; padding: 0px">🔄️</button>
             </div>
         </div>
         <div id="content-body" style="display: flex; flex-direction: column; flex:1;">
             <div id="results" style="overflow-y: scroll; padding-right: 8px;">
-                <div id="heading1" style="display: flex; flex-direction: row; text-align: center; font-size: medium; font-weight: bold;">
-                    <div style="flex: 1; font-size: medium;">Français</div>
-                    <div style="flex: 1;">
+                <div id="heading1" style="display: flex; flex-direction: row; text-align: center; font-size: medium; font-weight: bold; margin-bottom: 8px">
+                    <div id="original-lang" style="flex: 1; font-size: medium;">Français</div>
+                    <div id="switch-lang" style="flex: 1;">
                         <button id="reverse" style="background-color: transparent; border: none; padding: 0px;">🔀</button>
                     </div>
-                    <div style="flex: 1; font-size: medium;">English</div>
+                    <div id="translated-lang" style="flex: 1; font-size: medium;">English</div>
                 </div>
-                <div class="collapsible">
+                <div style="display:flex; flex-direction: row; gap: 8px; align-items: center;">
+                    <div id="word">fuir</div>
+                    <button id="source">Collins</button>
+                </div>
+                <button class="collapsible">
+                    <div class="dropdown">
+                        <img src="chevron-down.svg" style="margin:auto; display: inline-block;" alt="dropdown"/>
+                    </div>
                     <div class="important-info">
-                        <div class="column wordinfo">
-                            <div class="word"></div>
-                            <div class="wordclass"></div>
+                        <div class="wordinfo">
+                            <div class="wordclass">vt</div>
+                            <div class="pronunciation">[fɥiʀ]</div>
                         </div>
-                        <div class="column translation">
-                            <div class="synonym"></div>
-                            <div class="translation"></div>
+                        <div class="translation">
+                            <div class="synonym">[+ ennemi, danger]</div>
+                            <div class="translation">to flee from</div>
                         </div>
                     </div>
                     <div class="examples">
                     </div>
+                </button>
+            </div>
+            <div style="position: relative; width: 100%; display: flex;">
+                <div id="conjugation">
+                    <div id="verb">fuir <span id="hint" style="font-weight: normal;">click to show conjugations</span></div>
                 </div>
             </div>
-            <div id="conjugation">
-                <div id="verb">fuir</div>
-            </div>
+            See results here / Voir les resultats ici
         </div>
     </div>
     <div id="footer">
