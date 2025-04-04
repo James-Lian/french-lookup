@@ -1,0 +1,37 @@
+{
+    "manifest_version": 3,
+    "name": "French Lookup",
+    "description": "Lookup French words and conjugations with a hotkey",
+    "version": "0.0",
+    "permissions": ["activeTab", "scripting", "tabs"],
+    "action": {
+        "default_icon": {
+        },
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "js": ["content.js"],
+            "css": ["content.css"],
+            "matches": ["<all_urls>"]
+        }
+    ],
+    "commands":{
+        "open-dictionary": {
+            "suggested_key": {
+                "default": "Alt+W",
+                "mac": "Alt+W"
+            },
+            "description": "Activate the accents feature, and while holding the modifier key (Ctrl or Alt) keep tapping the letter key to cycle through a list of French accents. Release to insert."
+        },
+        "lookup-selected-word": {
+
+        },
+        "translate-selected-word": {
+            "description": ""
+        }
+    }
+}

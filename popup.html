@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="popup.css">
+    </head>
+    <script src="popup.js" charset="utf-8"></script>
+<body>
+    <div id="everything" style="height:480px; display: flex; flex-direction: column;">
+        <div id="title">
+            <div id="searchbox">
+                <input type="text" id="searchbar" placeholder="Search words here... / Trouver des mots ici..."/>
+                <button id="searchbutton">Enter</button>
+            </div>
+        </div>
+        <div id="content-body" style="display: flex; flex-direction: column; flex:1;">
+            <div id="results" style="overflow-y: scroll; padding-right: 8px;">
+                <div id="heading1" style="display: flex; flex-direction: row; text-align: center; font-size: medium; font-weight: bold;">
+                    <div style="flex: 1; font-size: medium;">Français</div>
+                    <div style="flex: 1;">
+                        <button id="reverse" style="background-color: transparent; border: none; padding: 0px;">🔀</button>
+                    </div>
+                    <div style="flex: 1; font-size: medium;">English</div>
+                </div>
+                <div class="collapsible">
+                    <div class="important-info">
+                        <div class="column wordinfo">
+                            <div class="word"></div>
+                            <div class="wordclass"></div>
+                        </div>
+                        <div class="column translation">
+                            <div class="synonym"></div>
+                            <div class="translation"></div>
+                        </div>
+                    </div>
+                    <div class="examples">
+                    </div>
+                </div>
+            </div>
+            <div id="conjugation">
+                <div id="verb">fuir</div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <a style="flex: 1;" href="https://github.com/James-Lian">James Lian</a>
+        <a style="flex: 1;" href="https://www.collinsdictionary.com/">Collins Dictionary</a>
+        <a style="flex: 1;" href="https://leconjugueur.lefigaro.fr/">LeConjugeur</a>
+    </div>
+</body>
+</html>
+
+<!-- #292929, #121212 -->
