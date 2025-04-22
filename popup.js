@@ -377,9 +377,9 @@ function XMLparser(data) {
                 label = "";
             }
 
-            translation = sense.querySelectorAll("cit[type='translation']");
-            if (translation) {
-                translation = Array.from(translation)
+            translation = Array.from(sense.querySelectorAll("cit[type='translation']"));
+            if (translation.length != 0) {
+                translation = translation
                     .filter(node => {
                         let ancestor = node.parentElement;
                         while (ancestor) {
@@ -398,30 +398,34 @@ function XMLparser(data) {
                     .join(""))
                     .join("\n");
             }
-            phrases = sense.querySelectorAll('re[type="phr"]')
-            if (phrases) {
-                phrases = Array.from(phrases)
+            phrases = Array.from(sense.querySelectorAll('re[type="phr"]'));
+            if (phrases.length != 0) {
+                phrases = phrases
                     .flatMap(node => Array.from(node.childNodes))
                     .filter(node => node.tagName != "span")
                     .map(node => node.textContent.trim())
             }
 
-            xr = sense.querySelectorAll('xr');
+            xr = sense.querySelector('xr');
+            console.log(xr);
             if (xr) {
-                xr = Array.from(xr)
-                    .flatMap(node => Array.from(node.childNodes))
-                    .filter(node => node.tagName != "span")
+                target = Array.from(xr.querySelectorAll('ref'))
+                    .map(node => {
+                        targ = node.getAttribute('target');
+                        resour = node.getAttribute('resource')
+                        return `<span class="link-button refer" onclick="redirect('${targ}', '${resour}')">${node.textContent.trim()}</span>`
+                    })
+                    .join(", ");
+                xr = Array.from(sense.querySelector('xr').childNodes)
+                    .filter(node => node.tagName != "ref" && node.tagName != "span")
                     .map(node => node.textContent.trim())
-                    .join(" ");
-            }
-            if (sense.querySelector('ref')) {
-                target.push(sense.querySelector('ref').getAttribute('target'));
-                target.push(sense.querySelector('ref').getAttribute('resource'));
+                    .join("")
+                xr = "(" + xr + " " + target + ")";
             }
 
-            examples = sense.querySelectorAll("cit[type='example']")
+            examples = Array.from(sense.querySelectorAll("cit[type='example']"));
             if (examples) {
-                examples = Array.from(examples)
+                examples = examples
                     .filter(node => {
                         let ancestor = node.parentElement;
                         while (ancestor) {
@@ -447,7 +451,6 @@ function XMLparser(data) {
             results[index]["phrases"] = phrases ? phrases : "";
             results[index]["examples"] = examples ? examples : "";
             results[index]["xr"] = xr ? xr : "";
-            results[index]["target"] = target ? target : "";
         }
     }
     console.log(results);
@@ -544,7 +547,7 @@ function XMLparser(data) {
                         <div class="translation">
                         <div class="translate">${result.translation}</div>
                             <div class="label">${result.label} <span class="colloc">${result.colloc}</span></div>
-                            <div class="link-button refer" onclick="redirect('${result.target != null ? result.target[0] : null}', '${result.target != null ? result.target[1] : null}')">${result.xr}</div>
+                            <div>${result.xr}</div>
                         </div>
                     </div>
                     <div class="otherinfo" style="display:${otherInfoDisplay};">
