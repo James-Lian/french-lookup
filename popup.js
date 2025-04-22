@@ -173,6 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
     didyoumeanE = document.getElementById('did-you-mean');
 
     spinner = document.getElementById("spinner");
+
+    searchBar.focus()
 })
 
 document.addEventListener('keyup', (event) => {
@@ -191,6 +193,7 @@ function switchMode() {
             searchButton.innerHTML = "defin";
             conjugation.style.height = '28px';
             conjugation.style.overflowY = 'hidden';
+            conjugation.style.paddingBottom = '3px';
             conjugation.scrollTop = 0;
             hint.style.visibility = "visible";
             hint.style.opacity = 1;
@@ -202,6 +205,7 @@ function switchMode() {
             searchButton.innerHTML = "conjug";
             conjugation.style.height = '372px';
             conjugation.style.overflowY = 'scroll';
+            conjugation.style.paddingBottom = '12px';
             hint.style.opacity = 0;
             hint.style.visibility = "hidden";
 
@@ -298,6 +302,13 @@ async function callAPI(dictionaryCode, serviceType, serviceWord) {
     }
     // results.innerHTML += data.data.entryContent;
 }
+
+// avoids unsafe-inline for the span element
+document.addEventListener("click", (event) => {
+    if (event.target.matches(".link-button.refer")) {
+        redirect(event.target.getAttribute("data-targ"), event.target.getAttribute("data-resour"));
+    }
+});
 
 function XMLparser(data) {
     let isVerb = false;
@@ -413,7 +424,8 @@ function XMLparser(data) {
                     .map(node => {
                         targ = node.getAttribute('target');
                         resour = node.getAttribute('resource')
-                        return `<span class="link-button refer" onclick="redirect('${targ}', '${resour}')">${node.textContent.trim()}</span>`
+
+                        return `<span class="link-button refer" data-targ="${targ}" data-resour="${resour}">${node.textContent.trim()}</span>`
                     })
                     .join(", ");
                 xr = Array.from(sense.querySelector('xr').childNodes)
@@ -637,13 +649,14 @@ async function fetchConjugations(word) {
 
             let verbBlock = ``;
             for (let j = 0; j < verbs.length; j++) {
-                if (j != 0) {
-                    verbBlock += "\n"
-                }
+                // if (j != 0) {
+                //     verbBlock += "\n"
+                // }
                 if (verbs[j]["pronoun"]) {
                     verbBlock += `${verbs[j]["pronoun"]} `
                 }
                 verbBlock += `<span class="conjugated-verbs">${verbs[j]["verb"]}</span>`
+                verbBlock += "\n";
             }
             verbEntry.innerHTML = verbBlock;
 
