@@ -563,9 +563,11 @@ function XMLparser(data) {
         entryE.insertAdjacentHTML("beforeend", HTMLblock);
     }
 
-    if (isVerb) {
+    if (isVerb && currTransLang == "french-english") {
         fetchConjugations(data.word);
         hint.innerHTML = "click to show conjugations";
+    } else if (currTransLang != "french-english") {
+        hint.innerHTML = "😵‍💫";
     } else {
         hint.innerHTML = "(that isn't a verb... )";
     }
