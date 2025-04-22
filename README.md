@@ -4,7 +4,7 @@ A convenient and easy-to-use tool for any aspiring French student. Quickly look 
 
 Press `/` to switch between the conjugation and dictionary mode.  Press `.` to switch between French and English translations.  Press `ENTER` to refocus onto the searchbar element. 
 
-Built using Vercel, the Collins dictionary API, and the conjugation-fr package. 
+Built using Vercel, Redis, the Collins dictionary API, and the conjugation-fr package. 
 
 ![image of the extension in action](https://github.com/James-Lian/french-lookup/blob/main/example.png)
 
@@ -14,3 +14,5 @@ Built using Vercel, the Collins dictionary API, and the conjugation-fr package.
 3. Click `Load unpacked`.
 4. Choose the extracted folder.
 5. Have fun!
+
+[Vercel serverless function](https://github.com/James-Lian/french-lookup-serverless-function)
