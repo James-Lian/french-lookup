@@ -1,0 +1,13 @@
+{
+    "manifest_version": 3,
+    "name": "French Lookup",
+    "description": "Lookup French words and conjugations with a hotkey",
+    "version": "0.0",
+    "permissions": ["activeTab", "scripting", "tabs"],
+    "host_permissions": ["https://*.vercel.app/*"],
+    "action": {
+        "default_icon": {
+        },
+        "default_popup": "popup.html"
+    }
+}
