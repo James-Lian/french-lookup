@@ -9,17 +9,5 @@
         "default_icon": {
         },
         "default_popup": "popup.html"
-    },
-    "background": {
-        "service_worker": "background.js"
-    },
-    "commands":{
-        "open-dictionary": {
-            "suggested_key": {
-                "default": "Alt+W",
-                "mac": "Alt+W"
-            },
-            "description": "Activate the accents feature, and while holding the modifier key (Ctrl or Alt) keep tapping the letter key to cycle through a list of French accents. Release to insert."
-        }
     }
 }
