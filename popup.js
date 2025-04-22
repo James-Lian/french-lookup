@@ -12,6 +12,7 @@ let switchLang;
 let currTransLang = 'french-english'; // translation
 
 let entryE;
+let redirectE;
 let wordE;
 
 let didyoumeanE;
@@ -174,6 +175,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     spinner = document.getElementById("spinner");
 
+    redirectE = document.getElementById("redirect");
+    redirectE.addEventListener("click", (event) => {
+        redirectWordReference()
+    })
+
     searchBar.focus()
 })
 
@@ -307,6 +313,8 @@ async function callAPI(dictionaryCode, serviceType, serviceWord) {
 document.addEventListener("click", (event) => {
     if (event.target.matches(".link-button.refer")) {
         redirect(event.target.getAttribute("data-targ"), event.target.getAttribute("data-resour"));
+    } else if (event.target.matches("collapsible")) {
+        toggleCollapsible(event.target);
     }
 });
 
@@ -418,7 +426,6 @@ function XMLparser(data) {
             }
 
             xr = sense.querySelector('xr');
-            console.log(xr);
             if (xr) {
                 target = Array.from(xr.querySelectorAll('ref'))
                     .map(node => {
@@ -546,7 +553,7 @@ function XMLparser(data) {
         }
 
         let HTMLblock = `
-            <button class="collapsible" onclick={toggleCollapsible(this)} style="cursor: ${pointer};">
+            <button class="collapsible" style="cursor: ${pointer};">
                 <div class="dropdown">
                     <img src=${buttonImage} style="margin:auto; display: inline-block;" alt="dropdown"/>
                 </div>
@@ -579,7 +586,7 @@ function XMLparser(data) {
         fetchConjugations(data.word);
         hint.innerHTML = "click to show conjugations";
     } else if (currTransLang != "french-english") {
-        hint.innerHTML = "😵‍💫";
+        hint.innerHTML = "(😵‍💫 Je ne parle pas anglais... )";
     } else {
         hint.innerHTML = "(that isn't a verb... )";
     }
