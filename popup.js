@@ -236,6 +236,7 @@ function setLang() {
 function toggleCollapsible(button) {
     const hiddenContent = button.querySelector(".hidden-example");
     hiddenContent.classList.toggle('open');
+    console.log("Bruski");
 }
 
 function redirect(word, source) {
@@ -311,11 +312,14 @@ async function callAPI(dictionaryCode, serviceType, serviceWord) {
 
 // avoids unsafe-inline for the span element
 document.addEventListener("click", (event) => {
+    const button = event.target.closest(".collapsible");
+
     if (event.target.matches(".link-button.refer")) {
         redirect(event.target.getAttribute("data-targ"), event.target.getAttribute("data-resour"));
-    } else if (event.target.matches("collapsible")) {
-        toggleCollapsible(event.target);
+    } else if (button) {
+        toggleCollapsible(button);
     }
+    console.log(event.target)
 });
 
 function XMLparser(data) {
