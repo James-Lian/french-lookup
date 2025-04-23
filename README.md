@@ -2,7 +2,7 @@
 
 A convenient and easy-to-use tool for any aspiring French student. Quickly look up French terms, phrases, and verb conjugations. It is recommended to set an extension shortcut through `chrome://extensions/shortcuts`.
 
-Press `/` to switch between the conjugation and dictionary mode.  Press `.` to switch between French and English translations.  Press `ENTER` to refocus onto the searchbar element. 
+Press `/` to switch between the conjugation and dictionary mode.  Press `.` to switch between French and English translations.  Press `ENTER` to refocus onto the searchbar element. It is recommended to use `TAB` to navigate.
 
 Built using Vercel, Redis, the Collins dictionary API, and the conjugation-fr package. 
 
